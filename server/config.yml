@@ -1,0 +1,52 @@
+# Address to listen on
+address: 0.0.0.0
+
+# Port to listen on
+port: 27015
+
+# Encryption key
+key: asdf
+
+# Options: postgresql or sqlite
+database: sqlite
+
+# Only required if database = sqlite
+sqlite:
+  db_path: source-ctrl.db
+
+# Only required if database = postgresql
+postgresql:
+  host: 127.0.0.1
+  db_name: source_control
+  user: sc_user
+  password: password
+
+pwnboard:
+  use_pwnboard: false
+  url: https://www.pwnboard.win/
+  access_token: pwnboard_api_access_token
+
+# Server information to be displayed
+server:
+  server_name: XPLAY.GG • CS2 DM FFA 8 • [US]
+  map_name: de_dust2
+  folder: csgo
+  game: Counter-Strike 2
+  app_id: 730
+  max_players: 16
+  vac: true
+  dedicated: true
+  platform: w # w -> Window, l -> Linux 
+  version: 2025.03.26
+
+  # Usernames of the connected players
+  players:
+   - Player 1
+   - Player 2
+   - Player 3
+
+
+logging:
+  log_file: source-ctrl.log
+  print_logs: true
+  write_logs: true

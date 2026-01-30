@@ -1,0 +1,18 @@
+print_banner: true
+
+# How many seconds without a checkin before an agent is marked as inactive 
+inactive_time: 600
+
+# Options: postgresql or sqlite
+database: sqlite
+
+# Only required if database = sqlite
+sqlite:
+  db_path: ../server/source-ctrl.db
+
+# Only required if database = postgresql
+postgresql:
+  host: 127.0.0.1
+  db_name: source_control
+  user: sc_user
+  password: password
