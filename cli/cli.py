@@ -178,6 +178,8 @@ def send_command(search_str: str, command: str) -> None:
         Task.create(agent_ip = agent.ip, task = command, completed = False)
         commands_sent += 1
 
+        Agent.update(tasks_sent = agent.tasks_sent + 1).where(Agent.ip == agent.ip).execute()
+
     print(f'Sent the command to {Colors.YELLOW}{commands_sent}{Colors.RESET} agents')
 
 def add_tag(ip_pattern: str, tag: str) -> None:
@@ -187,11 +189,12 @@ def add_tag(ip_pattern: str, tag: str) -> None:
         if ip_match(agent.ip, ip_pattern):
             current_tags = agent.tags
 
-            if tag in current_tags[0].split(','):
-                print(f'{Colors.YELLOW}{agent.ip}{Colors.RESET} already has the tag {Colors.YELLOW}{tag}{Colors.RESET}.')
-                return
+            if len(current_tags) != 0:
+                if tag in current_tags[0].split(','):
+                    print(f'{Colors.YELLOW}{agent.ip}{Colors.RESET} already has the tag {Colors.YELLOW}{tag}{Colors.RESET}.')
+                    return
 
-            if current_tags[0] == '':
+            if len(current_tags) == 0:
                 Agent.update(tags=str(tag)).where(Agent.ip == agent.ip).execute()
             else:
                 Agent.update(tags=Agent.tags.concat(',' + str(tag))).where(Agent.ip == agent.ip).execute()
