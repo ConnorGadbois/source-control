@@ -4,6 +4,7 @@ import struct
 import random
 import time
 from base64 import b64encode, b64decode
+import requests
 
 from .config import config
 from .database import Task, Agent
